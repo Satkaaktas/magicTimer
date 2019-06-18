@@ -3,7 +3,7 @@ let counter = 1;
 let timePreviousFrame;
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(1000  , 500);
     timePreviousFrame = new Date().getTime();
 }
 
@@ -32,6 +32,7 @@ function draw() {
     }
 }
 
+//returns time since last frame in seconds
 function deltaTime() {
     let _time = new Date().getTime();
     let _deltaTime = _time - timePreviousFrame;
