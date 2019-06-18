@@ -13,6 +13,7 @@ function draw() {
     textSize(100);
     text(timer, width / 2, height / 2);
     counter -= deltaTime();
+
     // while (timer > 0) {  // this doesn't work because it's all happening at the same time
     //   timer --;
     // }
@@ -25,7 +26,8 @@ function draw() {
         counter += 1;
         timer--;
     }
-    if (timer == 0) {
+    if (timer == 0) 
+    {
         text("GAME OVER", width / 2, height * 0.7);
     }
 }
@@ -34,5 +36,5 @@ function deltaTime() {
     let _time = new Date().getTime();
     let _deltaTime = _time - timePreviousFrame;
     timePreviousFrame = _time;
-    return _deltaTime;
+    return (_deltaTime * 0.001);
 }
