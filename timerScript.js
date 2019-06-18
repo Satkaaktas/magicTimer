@@ -1,4 +1,5 @@
 let timer = 5;
+let counter = 1;
 let timePreviousFrame;
 
 function setup() {
@@ -11,7 +12,7 @@ function draw() {
     textAlign(CENTER, CENTER);
     textSize(100);
     text(timer, width / 2, height / 2);
-
+    counter -= deltaTime();
     // while (timer > 0) {  // this doesn't work because it's all happening at the same time
     //   timer --;
     // }
@@ -20,8 +21,8 @@ function draw() {
     // % ---> this is the Modulo operator, it divides numbers and evaluates to the remainder: 17 % 5 evaluates to 2 remainder
     // this can be used to determine if the number on the left is divisible by the number on the right
 
-    if (frameCount % 120 == 0 && timer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-        console.log(deltaTime());
+    if (counter <= 0 && timer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+        counter += 1;
         timer--;
     }
     if (timer == 0) {
