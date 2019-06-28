@@ -11,12 +11,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="timerScript.js"></script>
+    
     <title>MTG Timer</title>
 </head>
 <body>
     
-    <h1>dis be a watch, soon, mabye<, update/h1>
+    
+    <button id="startTimer">Start</button>
+    
+    <form>
+        Countdown minutes <input id="countdownTime" type="number" max="99" >
+    </form>
 
+    <div id="time"></div>
+    <script src="timerScript.js"></script>
 </body>
 </html>
