@@ -1,41 +1,50 @@
-let timer = 5;
-let counter = 1;
+let sek = 90, min = 0;
+let startTime, endTime, deltaTime;
+let interval;
 let timePreviousFrame;
 
-function setup() {
-    createCanvas(1000  , 500);
-    timePreviousFrame = new Date().getTime();
+
+function StartCountdown() {
+    startTime = new Date().getTime();
+    endTime = GetEndTime();
+    interval = setInterval(Tick, 900);
 }
 
-function draw() {
-    background(220);
-    textAlign(CENTER, CENTER);
-    textSize(100);
-    text(timer, width / 2, height / 2);
-    counter -= deltaTime();
-
-    // while (timer > 0) {  // this doesn't work because it's all happening at the same time
-    //   timer --;
-    // }
-
-    // frameCount --> this keeps track of the number of times the program has gone throught the code, 60 = 1 second
-    // % ---> this is the Modulo operator, it divides numbers and evaluates to the remainder: 17 % 5 evaluates to 2 remainder
-    // this can be used to determine if the number on the left is divisible by the number on the right
-
-    if (counter <= 0 && timer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-        counter += 1;
-        timer--;
-    }
-    if (timer == 0) 
-    {
-        text("GAME OVER", width / 2, height * 0.7);
-    }
+function GetEndTime() {
+    return startTime + (min * 1000 * 60) + (sek * 1000);
 }
 
-//returns time since last frame in seconds
-function deltaTime() {
-    let _time = new Date().getTime();
-    let _deltaTime = _time - timePreviousFrame;
-    timePreviousFrame = _time;
-    return (_deltaTime * 0.001);
+function Pause() {
+    clearInterval(interval);
+    deltaTime = GetDeltaTime();
+}
+
+function Resume() {
+    startTime = new Date().getTime();
+    endTime = deltaTime + startTime;
+    interval = setInterval(Tick, 900);
+}
+
+function Reset() {
+    clearInterval(interval);
+}
+
+function TimerDone() {
+    console.log("TIME IN THE ROUND");
+}
+
+function GetDeltaTime() {
+    return endTime - new Date().getTime();
+}
+
+function Tick() {
+    deltaTime = GetDeltaTime();
+    let _minLeft = Math.floor(deltaTime / (1000 * 60));
+    let _secLeft = Math.floor((deltaTime % (1000 * 60)) / 1000);
+
+    if (_minLeft == 0 && _secLeft == 0) {
+        TimerDone();
+    }
+
+    console.log("Min:" + _minLeft + " Sec:" + _secLeft);
 }
