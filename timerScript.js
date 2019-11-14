@@ -7,6 +7,9 @@ let timeaudio = new Audio('audio/TIME IN THE ROUND.m4a');
 let testSound = new Audio('audio/test.mp3');
 let timerDone = false;
 
+//tests
+let color = document.getElementById("jumbotron");
+
 
 //Eventlistener vars
 let startButton = document.getElementById("startButton");
@@ -31,6 +34,7 @@ function getMinAndSec(){
 }
 
 function StartCountdown() {
+    color.style.backgroundColor = "dodgerblue";
     timerDone = false;
     getMinAndSec();
     startTime = new Date().getTime();
@@ -45,7 +49,7 @@ function GetEndTime() {
 
 function SoundTest()
 {
-        testSound.play();
+    testSound.play();
 }
 
 function Pause() {
@@ -61,9 +65,11 @@ function Resume() {
 
 function Reset() {
     clearInterval(interval);
+
 }
 
 function TimerDone() {
+    color.style.backgroundColor = "crimson";
     console.log("TIME IN THE ROUND");
     timerDone = true;
     timeaudio.play();
