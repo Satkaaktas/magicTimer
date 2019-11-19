@@ -65,7 +65,8 @@ function Resume() {
 
 function Reset() {
     clearInterval(interval);
-
+    visualTime.innerHTML = "Magic Timer by SPA ";
+    color.style.backgroundColor = "dodgerblue";
 }
 
 function TimerDone() {
@@ -85,10 +86,10 @@ function Tick() {
     let _minLeft = Math.floor(deltaTime / (1000 * 60));
     let _secLeft = Math.floor((deltaTime % (1000 * 60)) / 1000);
 
-    if (_minLeft == 0 && _secLeft == 0 && !timerDone) {
+    if (_minLeft <= 0 && _secLeft <= 0 && !timerDone) {
         TimerDone();
     }
-    let text = timerDone ? timerPrefix + (_minLeft +1) + ":" + _secLeft : _minLeft + ":" + _secLeft
+    let text = timerDone ? timerPrefix + _minLeft + ":" + _secLeft *-1 : _minLeft + ":" + _secLeft
     visualTime.innerHTML = text;
     console.log(text);
 }
