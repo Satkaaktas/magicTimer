@@ -74,7 +74,7 @@ function TimerDone() {
     console.log("TIME IN THE ROUND");
     timerDone = true;
     timeaudio.play();
-    timerPrefix = "TIME IN THE ROUND ";
+    timerPrefix = "TIME IN THE ROUND -";
 }
 
 function GetDeltaTime() {
@@ -89,7 +89,11 @@ function Tick() {
     if (_minLeft <= 0 && _secLeft <= 0 && !timerDone) {
         TimerDone();
     }
-    let text = timerDone ? timerPrefix + _minLeft + ":" + _secLeft *-1 : _minLeft + ":" + _secLeft
+
+    let _minPrefix = _minLeft < 10 && _minLeft > -10? "0" : "";
+    let _secPrefix = _secLeft < 10 && _secLeft > -10? "0" : "";
+    let _minLeftText = _secLeft > -1 ? 0 : (_minLeft *-1)-1;
+    let text = timerDone ? timerPrefix + _minPrefix + _minLeftText + ":" + _secPrefix + _secLeft *-1 : _minPrefix + _minLeft + ":" + _secPrefix + _secLeft;
     visualTime.innerHTML = text;
     console.log(text);
 }
