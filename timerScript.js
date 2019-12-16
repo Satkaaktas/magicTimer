@@ -55,18 +55,24 @@ function SoundTest()
 function Pause() {
     clearInterval(interval);
     deltaTime = GetDeltaTime();
+    timeaudio.pause();
 }
 
 function Resume() {
     startTime = new Date().getTime();
     endTime = deltaTime + startTime;
     interval = setInterval(Tick, 900);
+    if(timeaudio.pause){
+        timeaudio.play();
+    }
 }
 
 function Reset() {
     clearInterval(interval);
     visualTime.innerHTML = "Magic Timer by SPA ";
     color.style.backgroundColor = "dodgerblue";
+    timeaudio.pause();
+    timeaudio = new Audio('audio/TIME IN THE ROUND.m4a'); //Rewinds audio
 }
 
 function TimerDone() {
