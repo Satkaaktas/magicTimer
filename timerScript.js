@@ -90,9 +90,12 @@ function Tick() {
         TimerDone();
     }
 
+    //Because of the way we calculate the remaining time, negative numbers become inconsequential.
+    //This handles the formating after the timer reaches zero. (And adds a zero before single digit numbers)
     let _minPrefix = _minLeft < 10 && _minLeft > -10? "0" : "";
     let _secPrefix = _secLeft < 10 && _secLeft > -10? "0" : "";
-    let _minLeftText = _secLeft > -1 ? 0 : (_minLeft *-1)-1;
+    let _minLeftText = _secLeft > -1 ? 0 : (_minLeft *-1)-1; //Handles the difference between 00:00 and -XX:XX
+
     let text = timerDone ? timerPrefix + _minPrefix + _minLeftText + ":" + _secPrefix + _secLeft *-1 : _minPrefix + _minLeft + ":" + _secPrefix + _secLeft;
     visualTime.innerHTML = text;
     console.log(text);
