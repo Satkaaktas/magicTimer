@@ -6,7 +6,7 @@ let timerPrefix = "";
 let timeaudio = new Audio('audio/TIME IN THE ROUND.m4a');
 let testSound = new Audio('audio/test.mp3');
 let timerDone = false;
-
+let isPaused = false;
 //tests
 let color = document.getElementById("jumbotron");
 
@@ -53,18 +53,20 @@ function SoundTest()
 }
 
 function Pause() {
+    isPaused = true;
     clearInterval(interval);
     deltaTime = GetDeltaTime();
     timeaudio.pause();
 }
 
 function Resume() {
-    startTime = new Date().getTime();
-    endTime = deltaTime + startTime;
-    interval = setInterval(Tick, 900);
-    if(timeaudio.pause){
-        timeaudio.play();
+    if(isPaused){
+        startTime = new Date().getTime();
+        endTime = deltaTime + startTime;
+        interval = setInterval(Tick, 900);
+        isPaused = false;
     }
+     
 }
 
 function Reset() {
